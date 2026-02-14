@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg5r3vhskyppo"]
+
+[ext_resource type="Texture2D" uid="uid://bvpnlube64f3p" path="res://assest/sprites/world_tileset.png" id="1_ms7mn"]
+[ext_resource type="PackedScene" uid="uid://uxnui8ssdjo0" path="res://scene/killzone.tscn" id="2_a0l2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laclm"]
+size = Vector2(16, 16)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(56, -64)
+texture = ExtResource("1_ms7mn")
+offset = Vector2(-56, 64)
+region_enabled = true
+region_rect = Rect2(0, 31, 17, 18)
+
+[node name="killzone" parent="." instance=ExtResource("2_a0l2q")]
+position = Vector2(73.0919, -67.7625)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-73.0919, 67.7625)
+shape = SubResource("RectangleShape2D_laclm")

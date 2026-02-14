@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://cemmvc534luy8"]
+
+[ext_resource type="Script" path="res://scene/button.gd" id="1_2eh8r"]
+[ext_resource type="FontFile" uid="uid://xdagc2alrq4c" path="res://assest/fonts/PixelOperator8.ttf" id="1_5i85e"]
+[ext_resource type="Texture2D" uid="uid://djklijlui8ao8" path="res://new folder/Capture.PNG" id="3_2gjak"]
+[ext_resource type="FontFile" uid="uid://b413eqwwd1k3e" path="res://assest/fonts/PixelOperator8-Bold.ttf" id="4_iw8bp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g77y7"]
+texture = ExtResource("3_2gjak")
+
+[sub_resource type="GDScript" id="GDScript_bkfan"]
+
+[node name="Main Menu" type="Node2D"]
+position = Vector2(582, 365)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -580.0
+offset_top = -365.0
+offset_right = 571.0
+offset_bottom = 276.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_g77y7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -102.5
+offset_right = 194.0
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 10
+script = ExtResource("1_2eh8r")
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_5i85e")
+theme_override_font_sizes/font_size = 26
+text = "Start
+"
+script = SubResource("GDScript_bkfan")
+
+[node name="Option" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_5i85e")
+theme_override_font_sizes/font_size = 26
+text = "Option"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_5i85e")
+theme_override_font_sizes/font_size = 26
+text = "Exit
+"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -147.0
+offset_right = 224.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_iw8bp")
+theme_override_font_sizes/font_size = 27
+text = "SIMPLE PLATFORMER
+"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="VBoxContainer/Start" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="VBoxContainer" method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Option" to="VBoxContainer" method="_on_option_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer" method="_on_exit_pressed"]
