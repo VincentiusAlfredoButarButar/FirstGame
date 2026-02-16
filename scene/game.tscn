@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bjv0vvchrg3xh"]
+[gd_scene load_steps=27 format=3 uid="uid://bjv0vvchrg3xh"]
 
 [ext_resource type="Texture2D" uid="uid://bvpnlube64f3p" path="res://assest/sprites/world_tileset.png" id="1_bab7a"]
 [ext_resource type="Script" path="res://script/gamemanager.gd" id="1_wshj5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cx6vmme47ses1" path="res://scene/slime.tscn" id="6_jpkg4"]
 [ext_resource type="PackedScene" uid="uid://bow0e0lki02d4" path="res://scene/slime_2.tscn" id="7_cgcxa"]
 [ext_resource type="PackedScene" uid="uid://dg5r3vhskyppo" path="res://scene/killblock.tscn" id="10_26r0i"]
+[ext_resource type="Texture2D" uid="uid://giptw3u0w1p1" path="res://assest/sprites/coin.png" id="11_q1sh6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_84ikg"]
 texture = ExtResource("1_bab7a")
@@ -440,6 +441,21 @@ sources/0 = SubResource("TileSetAtlasSource_84ikg")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x5uqp"]
 
+[sub_resource type="Animation" id="Animation_0m644"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1522, -75)]
+}
+
 [sub_resource type="Animation" id="Animation_epqkj"]
 resource_name = "platfrom5"
 length = 1.5
@@ -457,7 +473,13 @@ tracks/0/keys = {
 "values": [Vector2(1522, -75), Vector2(1647, -75)]
 }
 
-[sub_resource type="Animation" id="Animation_0m644"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkyo0"]
+_data = {
+"RESET": SubResource("Animation_0m644"),
+"platfrom5": SubResource("Animation_epqkj")
+}
+
+[sub_resource type="Animation" id="Animation_kbhtw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -469,13 +491,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1522, -75)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkyo0"]
-_data = {
-"RESET": SubResource("Animation_0m644"),
-"platfrom5": SubResource("Animation_epqkj")
+"values": [Vector2(1216, -75)]
 }
 
 [sub_resource type="Animation" id="Animation_dp1vb"]
@@ -495,7 +511,13 @@ tracks/0/keys = {
 "values": [Vector2(1216, -75), Vector2(1312, -75)]
 }
 
-[sub_resource type="Animation" id="Animation_kbhtw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83m7f"]
+_data = {
+"RESET": SubResource("Animation_kbhtw"),
+"plaform3": SubResource("Animation_dp1vb")
+}
+
+[sub_resource type="Animation" id="Animation_67nro"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -507,13 +529,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1216, -75)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_83m7f"]
-_data = {
-"RESET": SubResource("Animation_kbhtw"),
-"plaform3": SubResource("Animation_dp1vb")
+"values": [Vector2(1360, -75)]
 }
 
 [sub_resource type="Animation" id="Animation_5joli"]
@@ -531,21 +547,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1360, -75), Vector2(1472, -75)]
-}
-
-[sub_resource type="Animation" id="Animation_67nro"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1360, -75)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ii8m3"]
@@ -614,15 +615,22 @@ position = Vector2(9, -13)
 zoom = Vector2(4, 4)
 limit_bottom = 68
 
+[node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D"]
+position = Vector2(-7, -11)
+scale = Vector2(0.904167, 0.890625)
+texture = ExtResource("11_q1sh6")
+region_enabled = true
+region_rect = Rect2(0, 0, 15, 16)
+
 [node name="ScoreLabel" type="Label" parent="Player/Camera2D"]
 unique_name_in_owner = true
-offset_left = -143.0
-offset_top = -79.0
-offset_right = -103.0
-offset_bottom = -56.0
+offset_left = -2.0
+offset_top = -15.0
+offset_right = 10.0
+offset_bottom = -7.0
 theme_override_fonts/font = ExtResource("2_yp6to")
 theme_override_font_sizes/font_size = 8
-text = "Coin: "
+text = ":0"
 
 [node name="killzone" parent="." instance=ExtResource("5_3pf84")]
 position = Vector2(-35, 69)

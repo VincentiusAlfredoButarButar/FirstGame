@@ -79,7 +79,7 @@ theme_override_font_sizes/font_size = 27
 text = "SIMPLE PLATFORMER
 "
 
-[connection signal="pressed" from="VBoxContainer/Start" to="VBoxContainer/Start" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start" to="VBoxContainer" method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="VBoxContainer/Start" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/Option" to="VBoxContainer" method="_on_option_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer" method="_on_exit_pressed"]
