@@ -1,31 +1,75 @@
 extends CharacterBody2D
 
-
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+
+const DASH = 500.0
+const DASH_TIME = 0.12
+const DASH_COOLDOWN = 0.45
+
+var dashing = false
+var dash_timer = 0.0
+var dash_cd = 0.0
+
+var facing_dir = 1 # 1 = kanan, -1 = kiri
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 
 func _physics_process(delta):
-	# Add the gravity.
+	# cooldown dash berkurang terus
+	if dash_cd > 0:
+		dash_cd -= delta
+
+	# Add gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Handle jump.
+	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
-	#flip the sprite
-	if direction >0:
+
+	# update arah hadap terakhir + flip sprite
+	if direction > 0:
+		facing_dir = 1
 		animated_sprite_2d.flip_h = false
-	if direction <0:
+	elif direction < 0:
+		facing_dir = -1
 		animated_sprite_2d.flip_h = true
-	
+
+	# Mulai dash (cek arah hadap dulu, lalu dash)
+	if Input.is_action_just_pressed("dash") and (not dashing) and dash_cd <= 0:
+		dashing = true
+		dash_timer = DASH_TIME
+		dash_cd = DASH_COOLDOWN
+
+		# kalau lagi pencet arah, pakai itu. kalau tidak, pakai arah hadap terakhir
+		if direction > 0:
+			facing_dir = 1
+		elif direction < 0:
+			facing_dir = -1
+
+	# =====================
+	# LOGIKA DASH
+	# =====================
+	if dashing:
+		dash_timer -= delta
+		velocity.x = facing_dir * DASH
+
+		if dash_timer <= 0:
+			dashing = false
+
+	else:
+		# Gerak normal
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	# Animasi (sederhana, mirip punyamu)
 	if is_on_floor():
 		if direction == 0:
 			animated_sprite_2d.play("idle")
@@ -33,9 +77,5 @@ func _physics_process(delta):
 			animated_sprite_2d.play("run")
 	else:
 		animated_sprite_2d.play("jump")
-		
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+
 	move_and_slide()

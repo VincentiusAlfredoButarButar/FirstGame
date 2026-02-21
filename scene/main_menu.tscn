@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scene/button.gd" id="1_2eh8r"]
 [ext_resource type="FontFile" uid="uid://xdagc2alrq4c" path="res://assest/fonts/PixelOperator8.ttf" id="1_5i85e"]
-[ext_resource type="Texture2D" uid="uid://djklijlui8ao8" path="res://new folder/Capture.PNG" id="3_2gjak"]
+[ext_resource type="Texture2D" uid="uid://desbcwlui401d" path="res://scene/background/Capture.PNG" id="1_lku3v"]
 [ext_resource type="FontFile" uid="uid://b413eqwwd1k3e" path="res://assest/fonts/PixelOperator8-Bold.ttf" id="4_iw8bp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g77y7"]
-texture = ExtResource("3_2gjak")
+texture = ExtResource("1_lku3v")
 
 [sub_resource type="GDScript" id="GDScript_bkfan"]
 
