@@ -595,6 +595,25 @@ _data = {
 
 [node name="game" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(20, 20)
+scale = Vector2(2.63333, 2.46875)
+texture = ExtResource("11_q1sh6")
+region_enabled = true
+region_rect = Rect2(0, 0, 15, 16)
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 34.0
+offset_top = 13.0
+offset_right = 63.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("2_yp6to")
+theme_override_font_sizes/font_size = 16
+text = ":0"
+
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_wshj5")
@@ -614,23 +633,7 @@ position = Vector2(9, -13)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 limit_bottom = 68
-
-[node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D"]
-position = Vector2(-7, -11)
-scale = Vector2(0.904167, 0.890625)
-texture = ExtResource("11_q1sh6")
-region_enabled = true
-region_rect = Rect2(0, 0, 15, 16)
-
-[node name="ScoreLabel" type="Label" parent="Player/Camera2D"]
-unique_name_in_owner = true
-offset_left = -2.0
-offset_top = -15.0
-offset_right = 10.0
-offset_bottom = -7.0
-theme_override_fonts/font = ExtResource("2_yp6to")
-theme_override_font_sizes/font_size = 8
-text = ":0"
+position_smoothing_enabled = true
 
 [node name="killzone" parent="." instance=ExtResource("5_3pf84")]
 position = Vector2(-35, 69)

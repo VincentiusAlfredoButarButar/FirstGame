@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cemmvc534luy8"]
+[gd_scene load_steps=6 format=3 uid="uid://cemmvc534luy8"]
 
 [ext_resource type="Script" path="res://scene/button.gd" id="1_2eh8r"]
 [ext_resource type="FontFile" uid="uid://xdagc2alrq4c" path="res://assest/fonts/PixelOperator8.ttf" id="1_5i85e"]
@@ -7,8 +7,6 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g77y7"]
 texture = ExtResource("1_lku3v")
-
-[sub_resource type="GDScript" id="GDScript_bkfan"]
 
 [node name="Main Menu" type="Node2D"]
 position = Vector2(582, 365)
@@ -44,7 +42,6 @@ theme_override_fonts/font = ExtResource("1_5i85e")
 theme_override_font_sizes/font_size = 26
 text = "Start
 "
-script = SubResource("GDScript_bkfan")
 
 [node name="Option" type="Button" parent="VBoxContainer"]
 layout_mode = 2
