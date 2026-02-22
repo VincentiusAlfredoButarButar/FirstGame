@@ -7,6 +7,7 @@ const DASH = 500.0
 const DASH_TIME = 0.12
 const DASH_COOLDOWN = 0.45
 
+var double_jump = false
 var dashing = false
 var dash_timer = 0.0
 var dash_cd = 0.0
@@ -26,9 +27,17 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Jump
+	# Jump and double jump
+	if is_on_floor():
+		double_jump = true
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	elif double_jump == true and Input.is_action_just_pressed("jump"):
+		velocity.y = JUMP_VELOCITY
+		double_jump = false
+	
+	
+	
 
 	var direction = Input.get_axis("move_left", "move_right")
 
